@@ -48,5 +48,17 @@ return array(
       'image' => 'map-marker-alt',
       'field' => null,
     ),
+    array(
+      'name' => 'videosgames',
+      'label' => 'Jeux Vidéos',
+      'image' => 'trophy',
+      'field' => null,
+    ),
+    array(
+      'name' => 'art',
+      'label' => 'Art',
+      'image' => 'palette',
+      'field' => null,
+    ),
   ],
 );
