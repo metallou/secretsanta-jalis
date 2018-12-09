@@ -48,6 +48,8 @@
     Ce quelque chose est leur trigramme.
     <br />
     Votre Secret Santa n'a aucun lien avec les sujets de la première énigme.
+    <br />
+    <small>(des trigrammes ont été rajoutés pour compléter la liste)</small>
   </p>
   @include('parts.step3')
 </section>
