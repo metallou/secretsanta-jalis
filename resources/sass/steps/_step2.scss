@@ -1,0 +1,16 @@
+// Variables
+@import '../variables';
+
+.step2type {
+  margin: 0px;
+  z-index: 1000 !important;
+}
+#step2types {
+  .step2type {
+    margin: 5px;
+  }
+}
+.step2slot {
+  min-height: 100px;
+}
+

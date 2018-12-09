@@ -1,0 +1,27 @@
+#step1 .form-control {
+  min-width: 200px;
+}
+
+#step2 .step2type {
+  margin: 0px;
+  z-index: 1000 !important;
+}
+
+#step2 #step2types .step2type {
+  margin: 5px;
+}
+
+#step2 .step2slot {
+  min-height: 100px;
+}
+
+#step3 #step3input {
+  width: auto !important;
+}
+
+.progress {
+  width: 0%;
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+

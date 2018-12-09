@@ -1,0 +1,17 @@
+// Variables
+@import './variables';
+
+#step1 {
+  @import './steps/step1';
+}
+#step2 {
+  @import './steps/step2';
+}
+#step3 {
+  @import './steps/step3';
+}
+
+.progress {
+  width: 0%;
+  transition: 2s;
+}
