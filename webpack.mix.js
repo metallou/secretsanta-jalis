@@ -18,4 +18,6 @@ mix
   .sass('resources/sass/app.scss', 'public/css')
   .js('resources/js/home.js', 'public/js')
   .sass('resources/sass/home.scss', 'public/css')
+  .js('resources/js/node.js', 'public/js')
+  .sass('resources/sass/node.scss', 'public/css')
 

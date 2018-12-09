@@ -20,32 +20,32 @@ const fProgress = function(nb) {
   fillProgress(STEP, nbCurrent, nbTotal);
 };
 
-const fResult = function(success) {
+const fSuccess = function(data) {
+  fProgress(1);
+
   const input = $(`#${STEP}input`);
   const holder = input.parent();
   const value = input.val();
 
-  fProgress(success ? 1 : 0);
-  if (success) {
-    const elem = `<span class="h2 p-3 bg-success rounded text-white">KCN</span>`;
-    holder
-      .removeClass('bg-danger')
-      .html(elem);
+  const elem = `<span class="h2 p-3 bg-success rounded text-white">KCN</span>`;
+  holder
+    .removeClass('bg-danger')
+    .html(elem);
 
-    appStorage.setItem(STEP, 'KCN');
-  } else {
-    if (value.trim() !== '') {
-      holder.addClass('bg-danger');
-    }
-  }
-};
+  fSaveSession();
 
-const fSuccess = function(data) {
-  fResult(data);
   fNext(STEP);
 };
 const fError = function(data) {
-  fResult(data);
+  fProgress(0);
+
+  const input = $(`#${STEP}input`);
+  const holder = input.parent();
+  const value = input.val();
+
+  if (value.trim() !== '') {
+    holder.addClass('bg-danger');
+  }
 };
 const fFailure = function(err) {
   console.error(err);

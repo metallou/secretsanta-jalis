@@ -17,3 +17,4 @@ Route::post("/step2", 'AjaxController@step2');
 Route::post("/step3", 'AjaxController@step3');
 
 Route::get('/node', 'HomeController@node')->name('node');
+Route::post('/node', 'AjaxController@node');

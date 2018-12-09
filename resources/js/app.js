@@ -33,29 +33,6 @@ window.fThen = function(fSuccess, fError) {
   return fReturn;
 };
 
-window.fillProgress = function(id, nbCurrent, nbTotal) {
-  const jQelem = $(`#${id} .progress`).first();
-  let percent = Math.floor(100*nbCurrent/nbTotal);
-
-  if (nbCurrent === nbTotal) {
-    percent = 100;
-    jQelem
-      .removeClass('bg-primary')
-      .addClass('bg-success');
-  }
-
-  jQelem.css('width', `${percent}%`);
-};
-
-window.fNext = function(step) {
-  $(`#${step} .check`)
-    .first()
-    .addClass('d-none');
-  $(`#${step} .next`)
-    .first()
-    .removeClass('d-none');
-};
-
 window.appStorage = sessionStorage;
 
 const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

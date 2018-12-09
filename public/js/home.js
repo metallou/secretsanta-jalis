@@ -60,27 +60,44 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(17);
+module.exports = __webpack_require__(18);
 
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+window.fillProgress = function (id, nbCurrent, nbTotal) {
+  var jQelem = $("#".concat(id, " .progress")).first();
+  var percent = Math.floor(100 * nbCurrent / nbTotal);
+
+  if (nbCurrent === nbTotal) {
+    percent = 100;
+    jQelem.removeClass('bg-primary').addClass('bg-success');
+  }
+
+  jQelem.css('width', "".concat(percent, "%"));
+};
+
+window.fNext = function (step) {
+  $("#".concat(step, " .check")).first().addClass('d-none');
+  $("#".concat(step, " .next")).first().removeClass('d-none');
+};
 
 __webpack_require__(19);
 
 __webpack_require__(20);
+
+__webpack_require__(21);
 
 $(document).ready(function () {
   $('#start .next').first().on('click', function (e) {
@@ -111,7 +128,7 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /***/ (function(module, exports) {
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -219,7 +236,7 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ 19:
+/***/ 20:
 /***/ (function(module, exports) {
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -358,7 +375,7 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports) {
 
 var nbTotal = 1;
@@ -383,30 +400,26 @@ var fProgress = function fProgress(nb) {
   fillProgress(STEP, nbCurrent, nbTotal);
 };
 
-var fResult = function fResult(success) {
+var fSuccess = function fSuccess(data) {
+  fProgress(1);
   var input = $("#".concat(STEP, "input"));
   var holder = input.parent();
   var value = input.val();
-  fProgress(success ? 1 : 0);
-
-  if (success) {
-    var elem = "<span class=\"h2 p-3 bg-success rounded text-white\">KCN</span>";
-    holder.removeClass('bg-danger').html(elem);
-    appStorage.setItem(STEP, 'KCN');
-  } else {
-    if (value.trim() !== '') {
-      holder.addClass('bg-danger');
-    }
-  }
-};
-
-var fSuccess = function fSuccess(data) {
-  fResult(data);
+  var elem = "<span class=\"h2 p-3 bg-success rounded text-white\">KCN</span>";
+  holder.removeClass('bg-danger').html(elem);
+  fSaveSession();
   fNext(STEP);
 };
 
 var fError = function fError(data) {
-  fResult(data);
+  fProgress(0);
+  var input = $("#".concat(STEP, "input"));
+  var holder = input.parent();
+  var value = input.val();
+
+  if (value.trim() !== '') {
+    holder.addClass('bg-danger');
+  }
 };
 
 var fFailure = function fFailure(err) {

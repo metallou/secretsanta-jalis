@@ -11,10 +11,10 @@ class AjaxController extends Controller
   {
     $aConsts = config('const.nodes');
 
-    $fMap = function($aData) use ($aConsts) {
+    $fMap = function(array $aData) use ($aConsts) {
       $glyph = $aData['glyph'];
       $code = $aData['code'];
-      $fFilter = function($aConst) use ($glyph, $code) {
+      $fFilter = function(array $aConst) use ($glyph, $code) {
         return $aConst['glyph'] === $glyph && $aConst['code'] === $code;
       };
 
@@ -40,10 +40,10 @@ class AjaxController extends Controller
   {
     $aConsts = config('const.types');
 
-    $fFilter = function($aConst) {
+    $fFilter = function(array $aConst) {
       return !is_null($aConst['field']);
     };
-    $fMap = function($aConst) {
+    $fMap = function(array $aConst) {
       return array(
         'name' => $aConst['name'],
         'field' => $aConst['field'],
@@ -51,7 +51,7 @@ class AjaxController extends Controller
     };
     $aConsts = array_map($fMap, array_filter(config('const.types'), $fFilter));
 
-    $fMap = function($aData) use ($aConsts) {
+    $fMap = function(array $aData) use ($aConsts) {
       $name = $aData['name'];
       $field = $aData['field'];
       $fFilter = function($aConst) use ($name, $field) {
@@ -95,5 +95,41 @@ class AjaxController extends Controller
       'status' => $status ? 'success' : 'error',
       'data' => $aHandledDatas,
     );
+  }
+
+  public function node(Request $request)
+  {
+    $aConsts = config('const.nodes');
+
+    $fStatus = function(array $aData, array $aConst) {
+      return ($aData['key1'] == $aConst['key1']) && ($aData['key2'] == $aConst['key2']);
+    };
+
+    $aData = $request->input('data');
+    $glyph = $aData['glyph'];
+    $fFilter = function(array $aConst) use ($glyph) {
+      return $aConst['glyph'] === $glyph;
+    };
+
+    $aConsts = array_filter(config('const.nodes'), $fFilter);
+    $aConst = reset($aConsts);
+    if ($aConst) {
+      $success = $fStatus($aData, $aConst);
+    } else {
+      $success = false;
+    }
+
+    $data = $aData;
+    if ($success) {
+      $data['name'] = $aConst['name'];
+      $data['code'] = $aConst['code'];
+    }
+
+    $aResponse = array(
+      'status' => $success ? 'success' : 'error',
+      'data' => $data
+    );
+
+    return response()->json($aResponse);
   }
 }

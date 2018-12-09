@@ -8,14 +8,14 @@ class HomeController extends Controller
 {
   public function index()
   {
-    $fMap1 = function($aConst) {
+    $fMap1 = function(array $aConst) {
       return array(
         'name' => $aConst['name'],
         'glyph' => $aConst['glyph'],
         'key' => $aConst['key1'],
       );
     };
-    $fMap2 = function($aConst) {
+    $fMap2 = function(array $aConst) {
       return array(
         'name' => $aConst['name'],
         'label' => $aConst['label'],
@@ -38,19 +38,23 @@ class HomeController extends Controller
 
   public function node()
   {
-    $fMap = function($aCode) {
+    $fSort = function(array $a, array $b) {
+      return $a['name'] > $b['name'];
+    };
+    $fMap = function(array $aConst) {
       return array(
-        'name' => $aCode['name'],
-        'glyph' => $aCode['glyph'],
-        'key' => $aCode['key1'],
+        'name' => $aConst['name'],
+        'glyph' => $aConst['glyph'],
       );
     };
 
+    $aNodes = config('const.nodes');
+    usort($aNodes, $fSort);
 
     $aResource = array(
-      'nodes' => array_map($fMap, config('const.nodes')),
+      'nodes' => array_map($fMap, $aNodes),
     );
 
-    return view('home', $aResource);
+    return view('node', $aResource);
   }
 }
