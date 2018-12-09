@@ -19,6 +19,10 @@
   width: auto !important;
 }
 
+.section {
+  min-height: 100vh;
+}
+
 .progress {
   width: 0%;
   -webkit-transition: 2s;
