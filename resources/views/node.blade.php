@@ -16,7 +16,7 @@
         <title>Secret Santa - Jalis</title>
     </head>
     <body>
-      <main class="card">
+      <main class="card border-0">
         <section class="card-body text-center">
           <div id="form" class="d-inline-block p-2">
             <div class="form-group text-left m-0 mb-3">
