@@ -33,7 +33,16 @@ window.fThen = function(fSuccess, fError) {
   return fReturn;
 };
 
-window.appStorage = sessionStorage;
+window.clickJump = function(e) {
+  const id = $(this).data('next');
+
+  $(`#${id}`).removeClass('d-none');
+
+  location.hash = 'PROUT';
+  location.hash = id;
+};
+
+window.appStorage = localStorage;
 
 const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 

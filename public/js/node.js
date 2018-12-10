@@ -84,7 +84,6 @@ var fGetSession = function fGetSession() {
 
   if (item === null) {
     data = {
-      "glyph": '',
       "key1": '',
       "key2": ''
     };
@@ -101,18 +100,16 @@ var fSaveSession = function fSaveSession(data) {
 
 var fLoadSession = function fLoadSession() {
   var data = fGetSession();
-  $('#glyph').val(data.glyph);
   $('#key1').val(data.key1);
   $('#key2').val(data.key2);
 };
 
 var fElem = function fElem(text) {
-  return "<span class=\"d-block\">".concat(text, "</span>");
+  return "<span class=\"d-block text-nowrap text-capitalize\">".concat(text, "</span>");
 };
 
 var fSuccess = function fSuccess(data) {
   $('#form').removeClass('bg-danger').addClass('bg-success');
-  $('#glyph').replaceWith(fElem(data.name));
   $('#key1').replaceWith(fElem(data.key1));
   $('#key2').replaceWith(fElem(data.key2));
   $('#code').replaceWith(fElem(data.code));
@@ -121,7 +118,7 @@ var fSuccess = function fSuccess(data) {
 };
 
 var fError = function fError(data) {
-  if (data.glyph) {
+  if (data.key1.length > 0 || data.key2.length > 0) {
     $('#form').addClass('bg-danger');
   }
 };

@@ -12,8 +12,8 @@ class AjaxController extends Controller
     $aConsts = config('const.nodes');
 
     $fMap = function(array $aData) use ($aConsts) {
-      $glyph = $aData['glyph'];
-      $code = $aData['code'];
+      $glyph = strtoupper($aData['glyph']);
+      $code = strtolower($aData['code']);
       $fFilter = function(array $aConst) use ($glyph, $code) {
         return $aConst['glyph'] === $glyph && $aConst['code'] === $code;
       };
@@ -72,7 +72,8 @@ class AjaxController extends Controller
 
   public function step3(Request $request)
   {
-    $status = $request->input('data') === 'KCN';
+    $glyph = $request->input('data');
+    $status = strtoupper($glyph) === 'KCN';
 
     $aResponse = array(
       'status' => $status ? 'success' : 'error',
@@ -101,27 +102,22 @@ class AjaxController extends Controller
   {
     $aConsts = config('const.nodes');
 
-    $fStatus = function(array $aData, array $aConst) {
-      return ($aData['key1'] == $aConst['key1']) && ($aData['key2'] == $aConst['key2']);
-    };
-
     $aData = $request->input('data');
-    $glyph = $aData['glyph'];
+    $aData['key1'] = $aData['key1'] ?? '';
+    $aData['key2'] = $aData['key2'] ?? '';
+
+    $glyph = strtoupper($aData['glyph']);
     $fFilter = function(array $aConst) use ($glyph) {
       return $aConst['glyph'] === $glyph;
     };
 
     $aConsts = array_filter(config('const.nodes'), $fFilter);
     $aConst = reset($aConsts);
-    if ($aConst) {
-      $success = $fStatus($aData, $aConst);
-    } else {
-      $success = false;
-    }
+
+    $success = $aConst && (strtolower($aData['key1']) == $aConst['key1']) && (strtolower($aData['key2']) == $aConst['key2']);
 
     $data = $aData;
     if ($success) {
-      $data['name'] = $aConst['name'];
       $data['code'] = $aConst['code'];
     }
 

@@ -4,12 +4,12 @@
 <ul id="step3list" class="d-flex flex-column list-unstyled">
 @foreach ($nodes as $node)
   <li class="m-2">
-    <span class="p-2 bg-primary rounded text-white">{{ $node['glyph'] }}</span>
+    <span class="p-2 bg-primary rounded text-white text-monospace text-uppercase font-weight-bold">{{ $node['glyph'] }}</span>
   </li>
 @endforeach
 @foreach ($glyphs as $glyph)
   <li class="m-2">
-    <span class="p-2 bg-secondary rounded text-white">{{ $glyph }}</span>
+    <span class="p-2 bg-secondary rounded text-white text-monospace text-uppercase font-weight-bold">{{ $glyph }}</span>
   </li>
 @endforeach
 </ul>

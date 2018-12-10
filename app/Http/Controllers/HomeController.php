@@ -37,23 +37,12 @@ class HomeController extends Controller
     return view('home', $aResource);
   }
 
-  public function node()
+  public function node(Request $request)
   {
-    $fSort = function(array $a, array $b) {
-      return $a['name'] > $b['name'];
-    };
-    $fMap = function(array $aConst) {
-      return array(
-        'name' => $aConst['name'],
-        'glyph' => $aConst['glyph'],
-      );
-    };
-
-    $aNodes = config('const.nodes');
-    usort($aNodes, $fSort);
+    $glyph = $request->route('glyph');
 
     $aResource = array(
-      'nodes' => array_map($fMap, $aNodes),
+      'glyph' => $glyph,
     );
 
     return view('node', $aResource);

@@ -19,10 +19,6 @@
   width: auto !important;
 }
 
-#step3 #step3list li {
-  font-family: "Courier New", Courier, monospace;
-}
-
 .section {
   min-height: 100vh;
 }

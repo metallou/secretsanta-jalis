@@ -27,7 +27,7 @@ const fSuccess = function(data) {
   const holder = input.parent();
   const value = input.val();
 
-  const elem = `<span class="h2 p-3 bg-success rounded text-white">KCN</span>`;
+  const elem = `<span class="h2 p-3 bg-success rounded text-white text-uppercase">KCN</span>`;
   holder
     .removeClass('bg-danger')
     .html(elem);

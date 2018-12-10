@@ -4,14 +4,14 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <script src="js/vendor.js" defer></script>
-        <link href="css/vendor.css" rel="stylesheet" />
+        <script src="{{ asset('js/vendor.js') }}" defer></script>
+        <link href="{{ asset('css/vendor.css') }}" rel="stylesheet" />
 
-        <script src="js/app.js" defer></script>
-        <link href="css/app.css" rel="stylesheet" />
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
-        <script src="js/node.js" defer></script>
-        <link href="css/node.css" rel="stylesheet" />
+        <script src="{{ asset('js/node.js') }}" defer></script>
+        <link href="{{ asset('css/node.css') }}" rel="stylesheet" />
 
         <title>Secret Santa - Jalis</title>
     </head>
@@ -19,15 +19,7 @@
       <main class="card border-0">
         <section class="card-body text-center">
           <div id="form" class="d-inline-block p-2">
-            <div class="form-group text-left m-0 mb-3">
-              <label for="glyph" class="m-0 font-weight-bold">Nom</label>
-              <select id="glyph" class="form-control">
-                <option></option>
-                @foreach ($nodes as $node)
-                  <option value="{{ $node['glyph'] }}">{{ $node['name'] }}</option>
-                @endforeach
-              </select>
-            </div>
+            <input type="hidden" id="glyph" class="form-control d-none" value="{{ $glyph }}" />
             <div class="form-group text-left m-0">
               <label for="key1" class="m-0 font-weight-bold">Clé 1</label>
               <input type="text" id="key1" class="form-control" />

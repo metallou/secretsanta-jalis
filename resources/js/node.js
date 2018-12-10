@@ -6,7 +6,6 @@ const fGetSession = function() {
 
   if (item === null) {
     data = {
-      "glyph": '',
       "key1": '',
       "key2": ''
     };
@@ -22,13 +21,12 @@ const fSaveSession = function(data) {
 const fLoadSession = function() {
   const data = fGetSession();
 
-  $('#glyph').val(data.glyph);
   $('#key1').val(data.key1);
   $('#key2').val(data.key2);
 }
 
 const fElem = function(text) {
-  return `<span class="d-block">${text}</span>`;
+  return `<span class="d-block text-nowrap text-capitalize">${text}</span>`;
 };
 
 const fSuccess = function(data) {
@@ -36,7 +34,6 @@ const fSuccess = function(data) {
     .removeClass('bg-danger')
     .addClass('bg-success');
 
-  $('#glyph').replaceWith(fElem(data.name));
   $('#key1').replaceWith(fElem(data.key1));
   $('#key2').replaceWith(fElem(data.key2));
   $('#code').replaceWith(fElem(data.code));
@@ -45,7 +42,7 @@ const fSuccess = function(data) {
   fNext();
 };
 const fError = function(data) {
-  if (data.glyph) {
+  if ((data.key1.length > 0) || (data.key2.length > 0)) {
     $('#form').addClass('bg-danger');
   }
 };

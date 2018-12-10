@@ -113,7 +113,14 @@ window.fThen = function (fSuccess, fError) {
   return fReturn;
 };
 
-window.appStorage = sessionStorage;
+window.clickJump = function (e) {
+  var id = $(this).data('next');
+  $("#".concat(id)).removeClass('d-none');
+  location.hash = 'PROUT';
+  location.hash = id;
+};
+
+window.appStorage = localStorage;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 jQuery.ajaxSetup({
   "type": 'POST',

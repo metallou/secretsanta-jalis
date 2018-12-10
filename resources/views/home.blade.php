@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="start" class="section my-5 py-5">
-  <p class="text-center">
+  <p class="text-center text-monospace bg-dark text-white font-weight-bold">
     Bonjour, Madame Lelouch.
     <br />
     <br />

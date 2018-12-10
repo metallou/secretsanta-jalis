@@ -16,5 +16,7 @@ Route::post("/step1", 'AjaxController@step1');
 Route::post("/step2", 'AjaxController@step2');
 Route::post("/step3", 'AjaxController@step3');
 
-Route::get('/node', 'HomeController@node')->name('node');
+Route::get('/node/{glyph}', 'HomeController@node')
+  ->middleware('glyph')
+  ->name('node');
 Route::post('/node', 'AjaxController@node');

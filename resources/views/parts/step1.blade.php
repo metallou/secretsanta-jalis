@@ -15,11 +15,11 @@
     @foreach ($nodes as $node)
       <tr class="step1row" data-glyph="{{ $node['glyph'] }}">
         <td class="text-nowrap" data-field="name">{{ $node['name'] }}</td>
-        <td class="text-nowrap" data-field="code">
+        <td class="text-nowrap text-capitalize" data-field="code">
           <input type="text" class="form-control" />
         </td>
-        <td class="text-nowrap" data-field="key1">{{ $node['key'] }}</td>
-        <td class="text-nowrap" data-field="key2"></td>
+        <td class="text-nowrap text-capitalize" data-field="key1">{{ $node['key'] }}</td>
+        <td class="text-nowrap text-capitalize" data-field="key2"></td>
       </tr>
     @endforeach
     </tbody>

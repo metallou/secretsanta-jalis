@@ -100,30 +100,10 @@ __webpack_require__(20);
 __webpack_require__(21);
 
 $(document).ready(function () {
-  $('#start .next').first().on('click', function (e) {
-    var id = $(this).data('next');
-    $("#".concat(id)).removeClass('d-none');
-    location.hash = id;
-  });
-  $('#step1 .next').first().on('click', function (e) {
-    var id = $(this).data('next');
-    $("#".concat(id)).removeClass('d-none');
-    location.hash = id;
-  });
-  $('#step2 .next').first().on('click', function (e) {
-    var id = $(this).data('next');
-    $("#".concat(id)).removeClass('d-none');
-    location.hash = id;
-  });
-  $('#step3 .next').first().on('click', function (e) {
-    var id = $(this).data('next');
-    $("#".concat(id)).removeClass('d-none');
-    location.hash = id;
-  });
-  $('#step1').removeClass('d-none');
-  $('#step2').removeClass('d-none');
-  $('#step3').removeClass('d-none');
-  $('#finish').removeClass('d-none');
+  $('#start .next').first().on('click', clickJump);
+  $('#step1 .next').first().on('click', clickJump);
+  $('#step2 .next').first().on('click', clickJump);
+  $('#step3 .next').first().on('click', clickJump);
 });
 
 /***/ }),
@@ -405,7 +385,7 @@ var fSuccess = function fSuccess(data) {
   var input = $("#".concat(STEP, "input"));
   var holder = input.parent();
   var value = input.val();
-  var elem = "<span class=\"h2 p-3 bg-success rounded text-white\">KCN</span>";
+  var elem = "<span class=\"h2 p-3 bg-success rounded text-white text-uppercase\">KCN</span>";
   holder.removeClass('bg-danger').html(elem);
   fSaveSession();
   fNext(STEP);
