@@ -3,7 +3,7 @@
 @section('content')
 <section id="start" class="section my-5 py-5">
   <p class="text-center text-monospace bg-dark text-white font-weight-bold">
-    Bonjour, Madame Lelouch.
+    Bonjour, Madame Defleur.
     <br />
     <br />
     Comme vous devez le savoir, le mois de Décembre annonce le retour des Secret Santas, plusieurs de leurs agents ont été repéré dans votre secteur.
@@ -15,7 +15,7 @@
     Si vous, ou l'un de vos assistants, parveniez à résoudre toutes les énigmes, votre Secret Santa vous récompensera de vos efforts.
     <br />
     <br />
-    Bonne chance Madame Lelouch.
+    Bonne chance Madame Defleur.
   </p>
   @include('parts.start')
 </section>
